@@ -23,19 +23,19 @@ def test_simple_move() -> None:
 def test_capture_move() -> None:
     game = CheckersGame()
     game.board = [
+        ['.', '.', '.', '.', '.', '.', '.', '.'],
+        ['.', '.', '.', '.', '.', '.', '.', '.'],
         ['.', 'b', '.', '.', '.', '.', '.', '.'],
+        ['.', '.', 'w', '.', '.', '.', '.', '.'],
         ['.', '.', '.', '.', '.', '.', '.', '.'],
-        ['.', '.', '.', '.', '.', '.', '.', '.'],
-        ['.', '.', '.', '.', '.', '.', '.', '.'],
-        ['.', '.', '.', 'w', '.', '.', '.', '.'],
         ['.', '.', '.', '.', '.', '.', '.', '.'],
         ['.', '.', '.', '.', '.', '.', '.', '.'],
         ['.', '.', '.', '.', '.', '.', '.', '.'],
     ]
     game.current_player = 'b'
-    game.make_move('b8-d6')
-    assert game.get_piece(game.algebraic_to_coords('d6')) == 'b'
-    assert game.get_piece(game.algebraic_to_coords('c7')) == '.'
+    game.make_move('b6-d4')
+    assert game.get_piece(game.algebraic_to_coords('d4')) == 'b'
+    assert game.get_piece(game.algebraic_to_coords('c5')) == '.'
 
 
 def test_forced_capture() -> None:
@@ -43,16 +43,16 @@ def test_forced_capture() -> None:
     game.board = [
         ['.', '.', '.', '.', '.', '.', '.', '.'],
         ['.', '.', '.', '.', '.', '.', '.', '.'],
+        ['.', '.', '.', 'b', '.', '.', '.', '.'],
+        ['.', '.', '.', '.', 'w', '.', '.', '.'],
         ['.', '.', '.', '.', '.', '.', '.', '.'],
         ['.', '.', '.', '.', '.', '.', '.', '.'],
         ['.', '.', '.', '.', '.', '.', '.', '.'],
-        ['.', 'w', '.', '.', '.', '.', '.', '.'],
-        ['.', '.', 'b', '.', '.', '.', '.', '.'],
         ['.', '.', '.', '.', '.', '.', '.', '.'],
     ]
     game.current_player = 'b'
     try:
-        game.make_move('c3-b4')
+        game.make_move('d6-c5')
         assert False, 'Expected capture requirement'
     except ValueError as exc:
         assert 'capture' in str(exc).lower()

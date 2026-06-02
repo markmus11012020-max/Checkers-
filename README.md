@@ -37,3 +37,7 @@ pytest
 - Only dark squares are playable.
 - Capture moves are mandatory.
 - Pieces are promoted to kings at the opposite side.
+
+## About this repo
+
+This repository is a minimal reproducible checkers project with a CLI, unit tests, and example usage.
