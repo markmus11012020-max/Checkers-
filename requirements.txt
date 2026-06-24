@@ -1,1 +1,2 @@
-pytest>=9.0
+windows_toasts>=1.3.1
+
